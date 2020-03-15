@@ -1,5 +1,5 @@
 <template>
-<div class="content">
+<div class="content" >
     <div class="datepicker" >
         <form action="" method="post">
             <table>
@@ -17,13 +17,13 @@
                     </td>
                     <td>
                         <div class="date_start">
-                            <input type="datetime" name="date_debut" :value="format"  @select="select" @click.prevent="boo"/>
-                            <datepicker-agenda :date="date" @select="select" v-if="bool" ></datepicker-agenda>
+                            <input type="datetime" name="date_debut" :value="format"  @select="select" @focus="open_datepicker" @blur="close_datepicker"/>
+                            <datepicker-agenda :date="date" @select="select" v-if="bool==true" ></datepicker-agenda>
                         </div>
                     </td>
                     <td>
                         <div class="date_end">
-                            <input type="datetime" name="date_fin" :value="format2" @changered="changered"  @click.prevent="boolean_start"/>
+                            <input type="datetime" name="date_fin" :value="format2" @changered="changered"  @focus="boolean_start" @blur="close_datepicker"/>
                             <datepicker-agenda-fin :date_fin="date_fin" v-if="bool2" @changered="changered"></datepicker-agenda-fin>
                         </div>
                     </td>
@@ -73,8 +73,6 @@ export default {
             return this.date. format("DD-MM-YYYY")
         },
         format2(){
-                        console.log("date_fin :" + this.date_fin.format('l'))
-
             return this.date_fin.format('DD-MM-YYYY')
         },
         week(){
@@ -89,7 +87,7 @@ export default {
             this.date = date
         },
         
-        boo(){
+        open_datepicker(){
             this.bool = true
             this.bool2 = false
         },
@@ -103,16 +101,17 @@ export default {
         },
         changered(date_fin){
             this.date_fin = date_fin
+        },
+        close_datepicker(){
+           this.bool=false
+           this.bool2=false
         }
     }
 }
 </script>
 <style lang="scss">
 .content{
-    position: absolute;
     .datepicker{
-        position: relative;
-        z-index: 155;
     }
     table{
             tr{

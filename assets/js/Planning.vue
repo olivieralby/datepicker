@@ -1,6 +1,8 @@
 <template>
-    <div class="planning" >
+    <div class="planning_barre" >
+        
         <planning-agenda :debut="debut" :duree="duree" :turn="turn" :activities="activities" />
+        
     </div>
 </template>
 <script>
@@ -26,4 +28,9 @@ export default {
     
 }
 </script>
+<style lang="css">
+    .planning_barre{
+        width: 100.5%;
+    }
+</style>
     

@@ -80,6 +80,24 @@ class HomeController extends AbstractController
         $em->remove($planning);
         $em->flush();
         return $this->redirectToRoute('home');
+    }
 
+    /**
+     * @Route("/show", name="show")
+     */
+    public function show(PlanningRepository $repo, Request $request)
+    {
+        $items = $repo->findAll();
+        $month = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+        if($request->isXMLHttpRequest()){
+            return new JsonResponse([
+                'content'=>$this->renderView('home/show.html.twig',['month'=>$month,'items'=>$items])
+            ]
+            );
+        }
+        return $this->render('home/show.html.twig',[
+            'items'=>$items,
+            'month'=>$month
+        ]);
     }
 }

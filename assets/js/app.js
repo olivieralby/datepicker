@@ -14,17 +14,24 @@ import Vue from 'vue'
 import Datepicker from './Datepicker'
 import Planning from './Planning'
 import Edit from './Edit';
-
-new Vue(
-    {
-        components:{Datepicker}
-    }
-).$mount('#app')
+import Show from './Show';
 
 new Vue({
-    components:{Planning}
+    components: {
+        Datepicker
+    }
+}).$mount('#app')
+new Vue({
+    components: {
+        Planning
+    }
 }).$mount('#planning')
 
-//appel de la class Edit permettant d'afficher la pop-up edit
+
+
+
+//appel de la class Edit permettant d'afficher la pop-up edition
 new Edit(document.querySelector('.filter'))
 
+//appel de la class Show permettant de voir la pop-up avec le planning
+new Show(document.querySelector('#planning'))

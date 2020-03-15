@@ -4,58 +4,64 @@
 
 {% block body %}
 <div class="container">
-                <div class="app"><!-- Création d'un datepicker avec Vue js -->
-                        <div id="app">
-                            <span></span>
-                            <h2>Saisir vos valeurs</h2>
-                            <datepicker  value="01-05-2020" ></datepicker>
-                        </div>
-                </div>
-                <!-- dasboard edit un element -->
-                <div class="dashboard filter" >
-                    <h2>Planning</h2>
-                    <div class="js-content"></div>
-                    <table class="table_list table table-striped">
-                            <tr>
-                                <th>Activité</th>
-                                <th>date début</th>
-                                <th>date fin</th>
-                                <th>professeur</th>
-                                <th>durée</th>
-                                <th>Actions</th>
-                            </tr>
+    <div class="app">
+        <!-- Création d'un datepicker avec Vue js -->
+        <div id="app">
+            <span></span>
+            <h2>Saisir vos valeurs</h2>
+            <datepicker value="01-05-2020"></datepicker>
+        </div>
+    </div>
+    <!-- dasboard edit un element -->
+    <div class="dashboard filter">
+        <h2>Planning</h2>
+        <div class="js-content"></div>
+        <table class="table_list table table-striped">
+            <tr>
+                <th>Activité</th>
+                <th>date début</th>
+                <th>date fin</th>
+                <th>professeur</th>
+                <th>durée</th>
+                <th>Actions</th>
+            </tr>
 
-                            {% for item in items %}<!--Récupération des éléments de la base de donnée-->
-                            
-                            <tr>
-                                <td>{{item.activity}} </td>
-                                <td>{{item.dateDebut | date('d/m/Y')}} </td>
-                                <td>{{item.dateFin | date('d/m/Y')}} </td>
-                                <td>{{item.professeur}} </td>
-                                <td>{{item.duree}} semaine(s)</td>
-                                
-                                <td ><a class="edit" href="{{path('edit',{id:item.id})}} " title="editer" ><i class="material-icons">
-                                    edit
-                                    </i></a>
-                                    
-                                <form action="{{ path('delete',{id:item.id})}} " method="post" style="display:inline-block;">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{csrf_token('delete' ~ item.id) }}">
-                                        <button style="border:none;"><i class="material-icons">
-                                            delete
-                                        </i></button>
-                                </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                       
-                </div>
+            {% for item in items %}
+            <!--Récupération des éléments de la base de donnée-->
+
+            <tr>
+                <td>{{item.activity}} </td>
+                <td>{{item.dateDebut | date('d/m/Y')}} </td>
+                <td>{{item.dateFin | date('d/m/Y')}} </td>
+                <td>{{item.professeur}} </td>
+                <td>{{item.duree}} semaine(s)</td>
+
+                <td><a class="edit" href="{{path('edit',{id:item.id})}} " title="editer"><i class="material-icons">
+                            edit
+                        </i></a>
+
+                    <form action="{{ path('delete',{id:item.id})}} " method="post" style="display:inline-block;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{csrf_token('delete' ~ item.id) }}">
+                        <button style="border:none;"><i class="material-icons">
+                                delete
+                            </i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
 </div>
 <div id="planning">
-    {% for m in month %}
+    <div class="js-planning">
+        <div class="show_planning">
+            <button><a href="{{path('show')}} " class="show_a">Voir le planning</a></button>
+        </div>
+        {% for m in month %}
         <div class="month">{{m}}</div>
-    {% endfor %}
+        {% endfor %}
         <div class="planning_header">
             {% for i in 1..52 %}
             <div class="weeks">{{i}}s</div>
@@ -63,11 +69,10 @@
         </div>
         <div class="content_planning">
             {% for i,item in items %}
-                <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree  }}" modif="{{i}} "></planning>
+            <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}"
+                modif="{{i}} "></planning>
             {% endfor %}
         </div>
-    
+    </div>
 </div>
-
-
 {% endblock %}

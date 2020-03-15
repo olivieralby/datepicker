@@ -1,157 +1,175 @@
 body {
-   margin: 0;
-   padding: 0;
-   font-family: sans-serif;
-   $color:rgb(62, 109, 161);
-   $colorText:rgb(1, 20, 43);
-   $colorBck:rgb(212, 230, 250);
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    $color: rgb(62, 109, 161);
+    $colorText: rgb(1, 20, 43);
+    $colorBck: rgb(212, 230, 250);
 
-   header{
-       height: 160px;
-       width: 100%;
-       background-color: white;
-       box-shadow: 0px 0px 5px black;
-       display: flex;
-       justify-content: space-evenly;
-       align-items: center;
-       h1{
-           color:#87bb34;
-           font-weight: 200;
-           text-align: left;
-           background-color: white;
-           width: 70%;
-           margin: auto;
-           border-radius: 50px;
-       }
-       .logo{
-           margin-left: 80px;
-           width: 30%;
-       }
-   }
-   .container{
-       position: relative;
-       top:0px;
-       background-color: #fff;
-       margin:0 250px;
-       height: 100vh;
-       padding: 0;
-      .app{
-        position: relative;
-        height: 320px;
+    header {
+        height: 160px;
         width: 100%;
-        padding-top: 32px;
-        background-color: rgb(53, 49, 44);
-        padding: 32px 32px;
-        color:rgb(180, 178, 178);
-        h2{
-            text-align: center;
-            color:rgb(185, 182, 182);
-            margin-bottom: 40px;
-            font-size: 24px;
-        }
-      }
-      .dashboard{
-          position: relative;
-          margin-top: 80px;
-          h2{
-              text-align: center;
-              color:$colorText;
-          }
-          .table_list{
-              th{
-                  width: 200px;
-              }
-              td{
-                  width: 200px;
-                  
-                  a{
-                      color:black;
-                  }
-              }
-          }
-      }
-      .formulaire{
-        width: 30%;
-        background-color:  #42463d;
-        color:white;
-        height: 600px;
-        position: absolute;
-        right:30px;
-        box-shadow:0px 0px 5px black;
-        z-index: 100;
-        padding: 10px;
-        .button{
-        background-color: transparent;
-        height: 30px;
-        width: 30px;
-        border-radius:30px;
+        background-color: white;
+        box-shadow: 0px 0px 5px black;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
+        align-items: center;
+
+        h1 {
+            color: #87bb34;
+            font-weight: 200;
+            text-align: left;
+            background-color: white;
+            width: 70%;
+            margin: auto;
+            border-radius: 50px;
         }
-        form{
-            #planning{
-                margin: 0;
+
+        .logo {
+            margin-left: 80px;
+            width: 30%;
+        }
+    }
+
+    .container {
+        position: relative;
+        top: 0px;
+        background-color: #fff;
+        margin: 0 250px;
+        height: 100vh;
+        padding: 0;
+
+        .app {
+            position: relative;
+            height: 320px;
+            width: 100%;
+            padding-top: 32px;
+            background-color: rgb(53, 49, 44);
+            padding: 32px 32px;
+            color: rgb(180, 178, 178);
+
+            h2 {
+                text-align: center;
+                color: rgb(185, 182, 182);
+                margin-bottom: 40px;
+                font-size: 24px;
             }
-            input[type="submit"]{
+        }
+
+        .dashboard {
+            position: relative;
+            margin-top: 80px;
+
+            h2 {
+                text-align: center;
+                color: $colorText;
+            }
+
+            .table_list {
+                th {
+                    width: 200px;
+                }
+
+                td {
+                    width: 200px;
+
+                    a {
+                        color: black;
+                    }
+                }
+            }
+        }
+
+        .formulaire {
+            width: 30%;
+            background-color: #42463d;
+            color: white;
+            height: 600px;
+            position: absolute;
+            right: 30px;
+            box-shadow: 0px 0px 5px black;
+            z-index: 100;
+            padding: 10px;
+
+            .button {
+                background-color: transparent;
                 height: 30px;
-                width: 100px;
-                background-color:  #87bb34;
-                color:white;
-                margin-left: 50%;
-                line-height: 10px;
+                width: 30px;
+                border-radius: 30px;
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                #planning {
+                    margin: 0;
+                }
+
+                input[type="submit"] {
+                    height: 30px;
+                    width: 100px;
+                    background-color: #87bb34;
+                    color: white;
+                    margin-left: 50%;
+                    line-height: 10px;
+                }
             }
         }
     }
 
-      .planning{
-          div{
-              height: 50px;
-          }
-      }
-   }
 
-
-#planning{
-    margin-bottom: 250px;
-    padding: 8px;
-        .month{
-            float:left;
-            width: 8.33%;
+    #planning {
+        margin-bottom: 250px;
+        width:90%;
+        margin:auto;
+        height: 600px;
+        overflow: hidden;
+        .month {
+            float: left;
+            width: 8.3333%;
             text-align: center;
             background-color: #87bb34;
-            color:white;
+            color: white;
             height: 40px;
             line-height: 40px;
-            border-right:1px solid white;
+            border-right: 1px solid white;
         }
-    .planning_header{
-        .weeks{
-            float: left;
-            width: 1.92%;
-            text-align: center;
-            background-color: #000;
-            color:rgba(255, 255, 255, 0.507);
-            font-size: 12px;
-            padding: 5px 0px;
+
+        .planning_header {
+            .weeks {
+                float: left;
+                width: 1.9230769%;
+                text-align: center;
+                background-color: #000;
+                color: rgba(255, 255, 255, 0.507);
+                font-size: 12px;
+                padding: 5px 0px;
+            }
         }
-    }
-        .content_planning{
+
+        .content_planning {
             width: 100%;
             display: flex;
             flex-direction: column;
-                
+
         }
-}  
-::-webkit-scrollbar{//traitement sur la scrollbar
-    width:5px;
-}
-::-webkit-scrollbar-track{
-    background-color: #fff;
-    padding: 1px;
-}
-::-webkit-scrollbar-thumb{
-    background-color: grey;
-    border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar {
+        //traitement sur la scrollbar
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #fff;
+        padding: 1px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: grey;
+        border-radius: 4px;
+    }
+
 }
 
-}//fin de la balise body
+//fin de la balise body

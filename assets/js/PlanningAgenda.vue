@@ -2,10 +2,10 @@
 <div >
     <div class="barre">
         <div class="debut" :style="{width:((nbweek-1)*1.923)+'%'}"></div>
-        <div :class="getId" v-if="somme<100" :style="{width:((nbduree)*1.923)+'%'}" >{{getChamp}} </div>
-        <div :class="getId" v-if="somme>100" :style="{width:(101.72 - nbweek*1.923) +'%'}" >{{getChamp}} </div>
+        <div :class="getId" v-if="somme<100" :style="{width:((nbduree)*1.9236)+'%'}" >{{getChamp}} </div>
+        <div :class="getId" v-if="somme>100" :style="{width:(101.72 - nbweek*1.92) +'%'}" >{{getChamp}} </div>
         <div :class="getId" v-if="somme>100" :style="{width:(somme-100)+'%'}" >{{getChamp}} </div>
-        <div class="end" v-if="somme<100" :style="{width:((52 - (somme/1.92))*1.923 ) +'%' } " ></div>
+        <div class="end" v-if="somme<100" :style="{width:((52 - (somme/1.92))*1.924 ) +'%' } " ></div>
         <div class="end" v-if="somme>100" :style="{width:((52 - ((somme-100)/1.92))*1.923 ) +'%' } " ></div>
     </div>
     <div class="reap">
@@ -34,7 +34,7 @@ export default {
         },
         somme(){
             const somme = parseInt(this.date.format('WW') ,10) + parseInt(this.longueur,10)
-            return (somme-1)*1.923
+            return (somme-1)*1.9230769
         },
         nbduree(){//permet de recupéré la duree de l'activité
             return this.longueur
@@ -125,6 +125,7 @@ div{
 .reap{
     position: absolute;
     top:200px;
+    left:100px;
     .activity0{
         height: 5px;width: 50px;
         background-color: red;
