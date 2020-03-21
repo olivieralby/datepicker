@@ -5,17 +5,53 @@
 {% block body %}
 <div class="container">
     <div class="app">
-        <!-- Création d'un datepicker avec Vue js -->
+
+        <!-- Création de la barre de saisie de valeur -->
         <div id="app">
             <span></span>
-            <h2>Saisir vos valeurs</h2>
-            <datepicker value="01-05-2020"></datepicker>
+            <!-- formulaire de saisie de la formation -->
+            <div class="formation_formulaire">
+                <h4>Saisir la formation</h4>
+                {{ form_start(form_) }}
+                {{ form_label(form_.name, 'Saisir une formation')}}
+                {{ form_row(form_.name) }}
+                <button type="submit" class="btn-formation">Valider</button>
+                {{ form_end(form_) }}
+            </div>
+            <!-- formulaire de saisie du planning -->
+            <div class="planning_formulaire">
+                <h4>Planning de la formation</h4>
+                {{ form_start(form,{attr:{class:'form-planning'}}) }}
+                {{ form_rest(form) }}
+                <button type="submit" class="btn_planning">Valider</button>
+                {{ form_end(form) }}
+            </div>
+            <!-- faire un commentaire sur le planning -->
+            <div class="commentaire">
+                <h4>Faire un commentaire</h4>
+                <div class="date_comment">
+                    <form action="" method="post" class="form_planning">
+                        <textarea is="textarea-autogrow" name="comment" id="comment" ></textarea>
+                        <div id="calendar">
+                            <datepicker ></datepicker><!-- création d'un custom element avec vue-js -->
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+            <!-- faire un input pour la saisie des éleves par formation -->
+            <div class="study">
+                <h4>Liste des élèves</h4>
+                {{ form_start(form_study)}}
+                {{ form_rest(form_study)}}
+                <button type="submit">Valider</button>
+                {{ form_end(form_study)}}
+            </div>
         </div>
     </div>
-    <!-- dasboard edit un element -->
-    <div class="dashboard filter">
+    <!-- dashboard editer un planning -->
+    <div class="dashboard">
         <h2>Planning</h2>
-        <div class="js-content"></div>
         <table class="table_list table table-striped">
             <tr>
                 <th>Activité</th>
@@ -53,26 +89,41 @@
         </table>
 
     </div>
-</div>
-<div id="planning">
-    <div class="js-planning">
-        <div class="show_planning">
-            <button><a href="{{path('show')}} " class="show_a">Voir le planning</a></button>
+    <!-- Liste des formations -->
+    
+</div><!-- fin de la div container -->
+
+
+<div id="planning"><!-- Permet d'afficher le planning -->
+    <div class="container_planning">
+        <div class="list_formation">
+            {{ form_start(form_formation) }}
+            {{ form_row(form_formation.search_formation) }}
+            <button type="submit">ok</button>
+            {{ form_end(form_formation) }}
         </div>
-        {% for m in month %}
-        <div class="month">{{m}}</div>
-        {% endfor %}
-        <div class="planning_header">
-            {% for i in 1..52 %}
-            <div class="weeks">{{i}}s</div>
-            {% endfor %}
+        <div class="planning_planning">
+
+            <div class="js-planning">
+                {% for m in month %}
+                <div class="month">{{m}}</div>
+                {% endfor %}
+                
+                <div class="content_planning">
+                    {% for i,item in items %}
+                    <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}"
+                    modif="{{i}} "></planning>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        <div class="content_planning">
-            {% for i,item in items %}
-            <planning activity="{{item.activity}}" value="{{item.dateDebut | date('m-d-Y') }}" jour="{{ item.duree }}"
-                modif="{{i}} "></planning>
+        <div class="planning_study">
+            <h4>Liste des stagiaires</h4>
+            {% for list in list_study %}
+                <p>{{ list.nom }} &nbsp {{list.prenom}} </p>
             {% endfor %}
         </div>
     </div>
 </div>
+
 {% endblock %}

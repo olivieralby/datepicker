@@ -9,6 +9,9 @@ export default class Week{
         this.end = this.start.clone().endOf('year')
         
     }
+    /**
+     * @return la semaine de la date
+     */
     getWeek(){
         const weeks = Array.from(moment.range(this.start, this.end).by('week'));
         return weeks;

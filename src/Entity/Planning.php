@@ -41,6 +41,13 @@ class Planning
      */
     private $duree;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Formation", inversedBy="plannings")
+     */
+    private $formation;
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,4 +112,21 @@ class Planning
 
         return $this;
     }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): self
+    {
+        $this->formation = $formation;
+
+        return $this;
+    }
+
+    
+
+   
+    
 }

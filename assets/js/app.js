@@ -9,29 +9,32 @@
 import '../css/app.scss';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+import $ from 'jquery';
 import Vue from 'vue'
 import Datepicker from './Datepicker'
 import Planning from './Planning'
-import Edit from './Edit';
-import Show from './Show';
+import Autogrow from './Autogrow';
 
+new Autogrow()
 new Vue({
     components: {
         Datepicker
     }
-}).$mount('#app')
+}).$mount('#calendar')
 new Vue({
     components: {
         Planning
     }
 }).$mount('#planning')
 
+let dashboard = document.querySelector('.dashboard')
+let planning = document.querySelector('#planning')
+let list_formation = document.querySelector('.list_formation')
+console.log(dashboard.scrollHeight)
+console.log(dashboard.getBoundingClientRect())
 
-
+planning.style.top = ((dashboard.scrollHeight + list_formation.scrollHeight) + 950) + 'px'
 
 //appel de la class Edit permettant d'afficher la pop-up edition
-new Edit(document.querySelector('.filter'))
+//new Edit(document.querySelector('.filter'))
 
-//appel de la class Show permettant de voir la pop-up avec le planning
-new Show(document.querySelector('#planning'))

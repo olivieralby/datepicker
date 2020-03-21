@@ -1,10 +1,16 @@
+$color: #87bb34;
+$color1: rgb(62, 109, 161);
+$colorText: rgb(1, 20, 43);
+$colorBck: rgb(212, 230, 250);
+
+*{
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    $color: rgb(62, 109, 161);
-    $colorText: rgb(1, 20, 43);
-    $colorBck: rgb(212, 230, 250);
 
     header {
         height: 160px;
@@ -41,25 +47,117 @@ body {
 
         .app {
             position: relative;
-            height: 320px;
+            height: 640px;
             width: 100%;
             padding-top: 32px;
             background-color: rgb(53, 49, 44);
             padding: 32px 32px;
             color: rgb(180, 178, 178);
 
-            h2 {
-                text-align: center;
-                color: rgb(185, 182, 182);
-                margin-bottom: 40px;
-                font-size: 24px;
+            
+
+            #app {
+                position: relative;
+                h2 {
+                    text-align: center;
+                    color: rgb(185, 182, 182);
+                    font-size: 24px;
+                    position: absolute;
+                    top:50px;
+                    left:40%;
+                }
+                .formation_formulaire {//css sur le formulaire formation
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.418);
+
+                    label {
+                        display: block;
+                    }
+
+                    .btn-formation {
+                        background-color: $color;
+                        border: none;
+                        outline: none;
+                        color: #ffffff;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        padding: 8px;
+                        border-radius: 4px;
+                    }
+                }
+
+                .planning_formulaire {//css sur le planning
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.418);
+
+                    form.form-planning {
+                        display: grid;
+                        grid-template-columns: 200px 200px 200px 200px;
+                        grid-column-gap: 50px;
+
+                        label {
+                            display: block;
+                        }
+
+                        .btn_planning {
+                            margin-top: 20px;
+                            height: 40px;
+                            background-color: $color;
+                            border:none;
+                            outline:none;
+                            border-radius: 4px;
+                            color:#ffffff;
+                            width: 65px;
+                        }
+                    }
+                }
+
+                .commentaire{//css sur le formulaire sur les commentaires
+                    border-bottom: 1px solid #000;
+                    padding-bottom: 10px;
+                    span.comment{
+                        cursor:pointer;
+                    }
+
+                    .date_comment{
+                        form{
+                            display:grid;
+                            grid-template-columns:600px 400px ;
+                            grid-gap: 50px;
+                        }
+                    }
+                }
+                //css formulaire élèves
+                .study{
+                    form{
+                        display:grid;
+                        grid-template-columns: 250px 250px 200px 50px;
+                        input{
+                            height: 30px;
+                        }
+                        label{
+                            display: block;
+                        }
+                        button{
+                            margin-top: 20px;
+                            height: 40px;
+                            background-color: $color;
+                            border:none;
+                            outline:none;
+                            border-radius: 4px;
+                            color:#ffffff;
+                            width: 65px;   
+                        }
+                    }
+                    
+                }
+
             }
         }
 
         .dashboard {
             position: relative;
             margin-top: 80px;
-
+            height:auto;
             h2 {
                 text-align: center;
                 color: $colorText;
@@ -79,14 +177,33 @@ body {
                 }
             }
         }
-
+        //css liste des formation
+        .list_formation{
+            form{
+                label{
+                    margin-left: 10px;
+                    float: left;
+                }
+                input{
+                    margin-left: 20px;
+                    float: left;
+                }
+                button{
+                    float: left;
+                    margin-left: 20px;
+                   
+                }
+                
+            }
+        }
+        //css sur la page edit.html.twig
         .formulaire {
-            width: 30%;
+            width: 40%;
             background-color: #42463d;
             color: white;
             height: 600px;
             position: absolute;
-            right: 30px;
+            right: 100px;
             box-shadow: 0px 0px 5px black;
             z-index: 100;
             padding: 10px;
@@ -101,58 +218,101 @@ body {
             }
 
             form {
+                height: 450px;
+                position: relative;
+
                 #planning {
                     margin: 0;
                 }
 
-                input[type="submit"] {
-                    height: 30px;
-                    width: 100px;
-                    background-color: #87bb34;
-                    color: white;
-                    margin-left: 50%;
-                    line-height: 10px;
+                label {
+                    display: block;
                 }
+
+                .btn {
+                    background-color: #87bb34;
+                    color: #fff;
+                    outline:none;
+                    border:none;
+                }
+
             }
         }
     }
 
-
     #planning {
-        margin-bottom: 250px;
-        width:90%;
-        margin:auto;
-        height: 600px;
+        width: 90%;
+        margin-left: 60px;
+        margin-bottom: 200px;
         overflow: hidden;
-        .month {
-            float: left;
-            width: 8.3333%;
-            text-align: center;
-            background-color: #87bb34;
-            color: white;
-            height: 40px;
-            line-height: 40px;
-            border-right: 1px solid white;
-        }
+        position: absolute;
+        padding-top: 80px;
+        box-shadow: 0px 0px 5px black;
+        
+        .container_planning{
+            position: relative;
+            height: auto;
+            .list_formation{
+                width: 50%;
+                margin-left: 29px;
+                border-bottom: 4px solid #fff;
+                form{
+                    height: 80px;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    background-color: #35312c;
+                    label{
+                        margin-left: 10px;
+                        color:white;
+                    }
+                    input{
+                        margin-left: 20px;
+                    }
+                    button{
+                        margin-left: 20px;
+                        height: 30px;
+                        background-color: $color;
+                        color:white;
+                        outline:none;
+                        border:none;
+                    }
+                    
+                }
+            }
 
-        .planning_header {
-            .weeks {
+        .js-planning {
+            width: 96%;
+            margin:auto;
+        
+
+            .month {
                 float: left;
-                width: 1.9230769%;
+                width: 8%;
                 text-align: center;
-                background-color: #000;
-                color: rgba(255, 255, 255, 0.507);
-                font-size: 12px;
-                padding: 5px 0px;
+                background-color: #87bb34;
+                color: white;
+                height: 40px;
+                line-height: 40px;
+                border-right: 1px solid white;
+            }
+
+            .content_planning {
+                width: 96%;
+                min-height: 400px;
+                display: flex;
+                flex-direction: column;
             }
         }
-
-        .content_planning {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-
+        .planning_study{
+            position: relative;
+            top:-220px;
+            left:50%;
+            p{
+                margin-left: 20px;
+            }
         }
+    }
     }
 
     ::-webkit-scrollbar {

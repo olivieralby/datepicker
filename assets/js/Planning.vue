@@ -31,6 +31,8 @@ export default {
 <style lang="css">
     .planning_barre{
         width: 100.5%;
+        border-bottom: 4px solid rgb(250, 249, 249);
+
     }
 </style>
     

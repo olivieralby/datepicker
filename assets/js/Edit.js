@@ -6,7 +6,8 @@ export default class Edit{
         if(element==null){
             return null
         }
-        this.content = document.querySelector('.js-content')
+        this.content = element.querySelector('.js-content')
+
         this.bindEvents()
     }
     bindEvents(){
@@ -14,7 +15,7 @@ export default class Edit{
         links.forEach(link=>{
             link.addEventListener('click',e=>{
                 e.preventDefault()
-                this.loadUrl(e.currentTarget.getAttribute('href'))
+                this.loadUrl(link.getAttribute('href'))
             })
         })
     }
@@ -27,7 +28,6 @@ export default class Edit{
         if(response.status>=200 && response.status < 300){
             const data = await response.json()
             this.content.innerHTML = data.content
-            this.submit(url)
             this.close()
         }
     }
@@ -37,20 +37,6 @@ export default class Edit{
             this.content.innerHTML = ""
         })
     }
-    submit(url){
-        const form = this.content.querySelector('.js-form')
-        const data = new FormData(form)
-        data.forEach((value,key)=>{
-            console.log(key)
-        })
-        form.addEventListener('submit', (e) => {
-            console.log(url)
-            
-            fetch(url, { method: form.method, body: new FormData(form) })
-              .then(response => response.json())
-              .then(json => console.log(json));
-            
-            return false;
-    })
-}
+   
+
 }

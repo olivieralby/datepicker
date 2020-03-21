@@ -51,9 +51,15 @@ export default {
        
     },
     methods:{
+        /**
+         * Sélectionne le jour coché pour lui affilié un css
+         */
         isSelected(day){
             return this.date.format('D') === day.format('D')
         },
+        /**
+         * Sélectionne un jour / remonte la date au composant parent
+         */
         selectDate(day){
             this.date = day
             this.$emit('select',this.date)
@@ -99,7 +105,7 @@ export default {
             padding:8px;
         }
         .header_month{
-            padding: 8px;
+            padding: 0px;
         }
     }
     .choise{
@@ -119,6 +125,7 @@ export default {
         }
         .choise_month{
             text-align: center;
+            color:black;
         }
     }
     
@@ -140,6 +147,7 @@ export default {
             float: left;
             text-align: center;
             position: relative;
+            color:black;
         }
             .datepicker_day.selected{
            

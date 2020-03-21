@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Search\Search;
 use App\Entity\Planning;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Planning|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +20,16 @@ class PlanningRepository extends ServiceEntityRepository
         parent::__construct($registry, Planning::class);
     }
 
-    // /**
-    //  * @return Planning[] Returns an array of Planning objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findPlanning(Search $search)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('p')
+            ->select('p', 'f')
+            ->join('p.formation', 'f');
+        if (!empty($search->search_formation)) {
+            $query = $query->andWhere('f.id IN (:formation)')
+                ->setParameter('formation', $search->search_formation);
+        }
 
-    /*
-    public function findOneBySomeField($value): ?Planning
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $query->getQuery()->getResult();
     }
-    */
 }

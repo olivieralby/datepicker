@@ -2,6 +2,7 @@
 
 namespace App\Test;
 
+use App\Entity\Planning;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AppTest extends WebTestCase{
@@ -16,7 +17,14 @@ class AppTest extends WebTestCase{
     public function testControllerWithId()
     {
         $client = static::createClient();
-        $client->request('GET','/admin/51');
+        $client->request('GET','/home/1');
+        $this->assertResponseStatusCodeSame(200);
+    }
+
+    public function testControllerDelete()
+    {
+        $client = static::createClient();
+        $client->request('GET','/home/1');
         $this->assertResponseStatusCodeSame(200);
     }
 }

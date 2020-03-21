@@ -1,12 +1,12 @@
 <template>
 <div >
     <div class="barre">
-        <div class="debut" :style="{width:((nbweek-1)*1.923)+'%'}"></div>
-        <div :class="getId" v-if="somme<100" :style="{width:((nbduree)*1.9236)+'%'}" >{{getChamp}} </div>
-        <div :class="getId" v-if="somme>100" :style="{width:(101.72 - nbweek*1.92) +'%'}" >{{getChamp}} </div>
-        <div :class="getId" v-if="somme>100" :style="{width:(somme-100)+'%'}" >{{getChamp}} </div>
-        <div class="end" v-if="somme<100" :style="{width:((52 - (somme/1.92))*1.924 ) +'%' } " ></div>
-        <div class="end" v-if="somme>100" :style="{width:((52 - ((somme-100)/1.92))*1.923 ) +'%' } " ></div>
+        <div class="debut" :style="{width:((nbweek-1)*getNumber)+'%'}"></div>
+        <div :class="getId" v-if="somme<=52" :style="{width:((nbduree)*getNumber)+'%'}" ></div>
+        <div :class="getId" v-if="somme>52" :style="{width:((52- (nbweek-1))*getNumber) +'%'}" ></div>
+        <!-- <div :class="getId" v-if="somme>52" :style="{width:(52-nbduree)*getNumber+'%'}" >{{getChamp}} </div>-->
+        <div class="end" v-if="somme<=52" :style="{width:((53 - somme)*getNumber ) +'%' } " ></div>
+        <div class="end" v-if="somme>52" :style="{width:((53 - ((somme-1)))*getNumber ) +'%' } " ></div>
     </div>
     <div class="reap">
         <span :class="getClass"></span>
@@ -30,11 +30,11 @@ export default {
     },
     computed:{
         nbweek(){//récupère le numéro de la semaine
-            return this.date.format('WW')
+            return parseInt(this.date.format('WW') ,10)
         },
         somme(){
             const somme = parseInt(this.date.format('WW') ,10) + parseInt(this.longueur,10)
-            return (somme-1)*1.9230769
+            return (somme)
         },
         nbduree(){//permet de recupéré la duree de l'activité
             return this.longueur
@@ -47,37 +47,37 @@ export default {
         },
         getClass(){
             return "activity" + this.ide
-        } 
+        } ,
+        getNumber(){
+            return 1.92307692308;
+        }
    }
    
 }
 </script>
 <style lang="scss">
-$class:product0;
-$class:product1;
-$class:product2;
-$class:product3;
-$class:product4;
-$class:product5;
+
 div{
     position: relative;
     .barre{
         width: 100%;
         position: relative;
-        }
         .debut{
-        width: 20px;
         height: 30px;
-        background-color: rgb(201, 196, 196);
+        background-color: rgb(209, 206, 206);
         float: left;
         text-align: center;
         }
+        
         .activity0{
             background-color: red;
             height: 30px;
             text-align: center;
             float: left;
             color:white;
+            font-size:12px;
+            position: relative;
+            
         }
         .activity1{
             height: 30px;
@@ -85,6 +85,7 @@ div{
             text-align: center;
             float: left;
             color:white;
+            font-size:12px
         }
         .activity2{
             height: 30px;
@@ -92,6 +93,7 @@ div{
             text-align: center;
             float: left;
             color:white;
+            font-size:12px
         }
         .activity3{
             height: 30px;
@@ -99,6 +101,7 @@ div{
             text-align: center;
             float: left;
             color:white;
+            font-size:12px
         }
         .activity4{
             height: 30px;
@@ -106,6 +109,7 @@ div{
             text-align: center;
             float: left;
             color:white;
+            font-size:12px
         }
         .activity5{
             height: 30px;
@@ -113,24 +117,29 @@ div{
             text-align: center;
             float: left;
             color:white;
+            font-size: 12px;
         }
         .end{
             width: 20px;
             height: 30px;
-            background-color: rgb(201, 196, 196);
+            background-color: rgb(229, 231, 229);
             float: left;
             text-align: center;
+            z-index: 100;
         }
+    }
 }
 .reap{
     position: absolute;
     top:200px;
     left:100px;
+    display: flex;
+    justify-content: space-evenly;
     .activity0{
         height: 5px;width: 50px;
         background-color: red;
         display: inline-block;
-        vertical-align: bottom;
+
     }
     .activity1{
         height: 5px;width: 50px;
