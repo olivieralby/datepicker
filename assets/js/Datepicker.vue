@@ -1,14 +1,11 @@
 <template>
   <div class="content" >
     <div class="datepicker">
-      <form action method="post">
         <div class="datepicker_comment">
-            <input  type="datetime"  name="date_debut" :value="format"  @select="select" @focus="open_datepicker"  />
+            <input  type="datetime"  name="temps" :value="format"  @select="select" @focus="open_datepicker"  />
             <datepicker-agenda class="d-agenda" :date="date" @select="select" v-if="bool==true"></datepicker-agenda>
-            <button type="submit">Ok</button>
         </div>
 
-      </form>
     </div>
   </div>
 </template>
@@ -67,22 +64,8 @@ export default {
 <style lang="scss">
 .datepicker_comment{
     position: relative;
-    display: grid;
-    grid-template-columns: 200px  40px;
-    grid-gap: 50px;
-    textarea{
-    }
     input{
         height: 30px;
-    }
-
-    button{
-        height: 30px;
-        background-color: #87bb34;
-        color:white;
-        border:none;
-        outline:none;
-        border-radius: 4px;
     }
 
     .d-agenda{

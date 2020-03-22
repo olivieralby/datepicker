@@ -20,7 +20,10 @@ class PlanningRepository extends ServiceEntityRepository
         parent::__construct($registry, Planning::class);
     }
 
-    public function findPlanning(Search $search)
+    /**
+     * @return un tableau avec les valeurs de recherche des activités
+     */
+    public function findPlanning(Search $search):array
     {
         $query = $this->createQueryBuilder('p')
             ->select('p', 'f')

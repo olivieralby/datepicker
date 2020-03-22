@@ -11,7 +11,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-
+    ::-webkit-scrollbar {
+        //traitement sur la scrollbar
+        width: 5px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background-color: #fff;
+        padding: 1px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: grey;
+        border-radius: 4px;
+    }
     header {
         height: 160px;
         width: 100%;
@@ -47,15 +60,13 @@ body {
 
         .app {
             position: relative;
-            height: 640px;
+            //height: 640px;
             width: 100%;
             padding-top: 32px;
             background-color: rgb(53, 49, 44);
             padding: 32px 32px;
             color: rgb(180, 178, 178);
-
             
-
             #app {
                 position: relative;
                 h2 {
@@ -68,7 +79,19 @@ body {
                 }
                 .formation_formulaire {//css sur le formulaire formation
                     border-bottom: 1px solid rgba(0, 0, 0, 0.418);
+                    padding-bottom: 10px;
+                    h4{
+                        cursor:pointer;
+                        .material-icons{
+                            font-size: 30px;
+                            vertical-align: middle;
+                            margin-left: 66px;
 
+                        }
+                    }
+                    span.comment{
+                        cursor:pointer;
+                    }
                     label {
                         display: block;
                     }
@@ -88,7 +111,14 @@ body {
                 .planning_formulaire {//css sur le planning
                     padding-bottom: 10px;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.418);
+                    h4{
+                        cursor:pointer;
+                        .material-icons{
+                            font-size: 30px;
+                            vertical-align: middle;
 
+                        }
+                    }
                     form.form-planning {
                         display: grid;
                         grid-template-columns: 200px 200px 200px 200px;
@@ -114,20 +144,52 @@ body {
                 .commentaire{//css sur le formulaire sur les commentaires
                     border-bottom: 1px solid #000;
                     padding-bottom: 10px;
+                    h4{
+                        cursor:pointer;
+                        .material-icons{
+                            font-size: 30px;
+                            vertical-align: middle;
+                            margin-left: 26px;
+
+                        }
+                    }
                     span.comment{
                         cursor:pointer;
                     }
 
                     .date_comment{
+                        
                         form{
                             display:grid;
-                            grid-template-columns:600px 400px ;
+                            grid-template-columns:500px 70px 150px 160px ;
                             grid-gap: 50px;
+                            textarea{
+                                width: 500px;
+                            }
+
+                            button{
+                                height: 40px;
+                                background-color: $color;
+                                border:none;
+                                outline:none;
+                                border-radius: 4px;
+                                color:#ffffff;
+                                margin-left: 50px;
+                                width: 50px;
+                            }
                         }
                     }
                 }
                 //css formulaire élèves
                 .study{
+                    h4{
+                        cursor:pointer;
+                        .material-icons{
+                            font-size: 30px;
+                            vertical-align: middle;
+                            margin-left: 87px;
+                        }
+                    }
                     form{
                         display:grid;
                         grid-template-columns: 250px 250px 200px 50px;
@@ -151,6 +213,35 @@ body {
                     
                 }
 
+            }
+        }
+
+        .list_formation{
+            width: 50%;
+            border-bottom: 4px solid #fff;
+            margin-top: 30px;
+            form{
+                height: 80px;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                background-color: #35312cde;
+                label{
+                    margin-left: 10px;
+                    color:white;
+                }
+                input{
+                    margin-left: 20px;
+                }
+                button{
+                    margin-left: 20px;
+                    height: 30px;
+                    background-color: $color;
+                    color:white;
+                    outline:none;
+                    border:none;
+                }
+                
             }
         }
 
@@ -238,57 +329,25 @@ body {
 
             }
         }
-    }
-
-    #planning {
-        width: 90%;
-        margin-left: 60px;
-        margin-bottom: 200px;
-        overflow: hidden;
-        position: absolute;
-        padding-top: 80px;
-        box-shadow: 0px 0px 5px black;
-        
-        .container_planning{
-            position: relative;
-            height: auto;
-            .list_formation{
-                width: 50%;
-                margin-left: 29px;
-                border-bottom: 4px solid #fff;
-                form{
-                    height: 80px;
-                    display: flex;
-                    justify-content: space-evenly;
-                    align-items: center;
-                    background-color: #35312c;
-                    label{
-                        margin-left: 10px;
-                        color:white;
-                    }
-                    input{
-                        margin-left: 20px;
-                    }
-                    button{
-                        margin-left: 20px;
-                        height: 30px;
-                        background-color: $color;
-                        color:white;
-                        outline:none;
-                        border:none;
-                    }
+        #planning {
+            width: 90%;
+            margin-bottom: 200px;
+            overflow: hidden;
+            padding-top: 80px;
+            box-shadow: 0px 0px 5px black;
+            
+            .container_planning{
+                position: relative;
+                height: auto;
+                                
+                .js-planning {
+                    width: 96%;
+                    margin:auto;
                     
-                }
-            }
-
-        .js-planning {
-            width: 96%;
-            margin:auto;
-        
-
-            .month {
-                float: left;
-                width: 8%;
+                    
+                    .month {
+                        float: left;
+                        width: 8%;
                 text-align: center;
                 background-color: #87bb34;
                 color: white;
@@ -296,7 +355,7 @@ body {
                 line-height: 40px;
                 border-right: 1px solid white;
             }
-
+            
             .content_planning {
                 width: 96%;
                 min-height: 400px;
@@ -313,23 +372,11 @@ body {
             }
         }
     }
-    }
-
-    ::-webkit-scrollbar {
-        //traitement sur la scrollbar
-        width: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background-color: #fff;
-        padding: 1px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background-color: grey;
-        border-radius: 4px;
-    }
+    
+    
+    
+}
+}//fin balise container
 
 }
-
 //fin de la balise body

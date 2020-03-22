@@ -11,8 +11,12 @@
             <span></span>
             <!-- formulaire de saisie de la formation -->
             <div class="formation_formulaire">
-                <h4>Saisir la formation</h4>
-                {{ form_start(form_) }}
+                <h4>Saisir la formation
+                    <span class="material-icons">
+                        keyboard_arrow_down
+                        </span>
+                </h4>
+                {{ form_start(form_,{attr:{class:'form-format'}}) }}
                 {{ form_label(form_.name, 'Saisir une formation')}}
                 {{ form_row(form_.name) }}
                 <button type="submit" class="btn-formation">Valider</button>
@@ -20,7 +24,11 @@
             </div>
             <!-- formulaire de saisie du planning -->
             <div class="planning_formulaire">
-                <h4>Planning de la formation</h4>
+                <h4>Planning de la formation
+                    <span class="material-icons">
+                        keyboard_arrow_down
+                        </span>
+                </h4>
                 {{ form_start(form,{attr:{class:'form-planning'}}) }}
                 {{ form_rest(form) }}
                 <button type="submit" class="btn_planning">Valider</button>
@@ -28,26 +36,44 @@
             </div>
             <!-- faire un commentaire sur le planning -->
             <div class="commentaire">
-                <h4>Faire un commentaire</h4>
+                <h4>Faire un commentaire
+                    <span class="material-icons">
+                        keyboard_arrow_down
+                        </span>
+                </h4>
                 <div class="date_comment">
-                    <form action="" method="post" class="form_planning">
-                        <textarea is="textarea-autogrow" name="comment" id="comment" ></textarea>
-                        <div id="calendar">
-                            <datepicker ></datepicker><!-- création d'un custom element avec vue-js -->
-                        </div>
-                    </form>
+                    {{ form_start(form_comment) }}
+                    {{ form_rest(form_comment) }}
+                    <div id="calendar">
+                        <datepicker value="20-03-2020" ></datepicker><!-- création d'un custom element avec vue-js -->
+                    </div>
+                        <button type="submit">Ok</button>
+                    {{ form_end(form_comment) }}
                     
                 </div>
             </div>
             <!-- faire un input pour la saisie des éleves par formation -->
             <div class="study">
-                <h4>Liste des élèves</h4>
-                {{ form_start(form_study)}}
-                {{ form_rest(form_study)}}
-                <button type="submit">Valider</button>
-                {{ form_end(form_study)}}
+                <h4>Liste des élèves
+                    <span class="material-icons">
+                        keyboard_arrow_down
+                        </span>
+                </h4>
+                <div class="form_study">
+                    {{ form_start(form_study)}}
+                    {{ form_rest(form_study)}}
+                    <button type="submit">Valider</button>
+                    {{ form_end(form_study)}}
+                </div>
             </div>
         </div>
+    </div>
+    <!-- filtre pour la saisie -->
+    <div class="list_formation">
+        {{ form_start(form_formation) }}
+        {{ form_row(form_formation.search_formation) }}
+        <button type="submit">ok</button>
+        {{ form_end(form_formation) }}
     </div>
     <!-- dashboard editer un planning -->
     <div class="dashboard">
@@ -91,17 +117,10 @@
     </div>
     <!-- Liste des formations -->
     
-</div><!-- fin de la div container -->
-
 
 <div id="planning"><!-- Permet d'afficher le planning -->
     <div class="container_planning">
-        <div class="list_formation">
-            {{ form_start(form_formation) }}
-            {{ form_row(form_formation.search_formation) }}
-            <button type="submit">ok</button>
-            {{ form_end(form_formation) }}
-        </div>
+        
         <div class="planning_planning">
 
             <div class="js-planning">
@@ -125,5 +144,6 @@
         </div>
     </div>
 </div>
+</div><!-- fin de la div container -->
 
 {% endblock %}

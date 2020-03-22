@@ -33,6 +33,11 @@ class Formation
      */
     private $studies;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Commentaire", mappedBy="formation", cascade={"persist", "remove"})
+     */
+    private $commentaire;
+
 
     public function __construct()
     {
@@ -118,6 +123,24 @@ class Formation
             if ($study->getFormation() === $this) {
                 $study->setFormation(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function getCommentaire(): ?Commentaire
+    {
+        return $this->commentaire;
+    }
+
+    public function setCommentaire(?Commentaire $commentaire): self
+    {
+        $this->commentaire = $commentaire;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newFormation = null === $commentaire ? null : $this;
+        if ($commentaire->getFormation() !== $newFormation) {
+            $commentaire->setFormation($newFormation);
         }
 
         return $this;

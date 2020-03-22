@@ -15,9 +15,11 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class PlanningType extends AbstractType
 {
+    /**
+     * Création d'un formalaire pour les activités
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $formation = new Formation();
         $builder
             ->add('activity',TextType::class,[
                 'attr'=>[

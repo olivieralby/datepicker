@@ -35,4 +35,4 @@ export default class Autogrow extends HTMLTextAreaElement{
         this.style.height = this.scrollHeight + 'px'
     }
 }
-customElements.define('textarea-autogrow',Autogrow,{extends:'textarea'})
+customElements.define('textarea-grow',Autogrow,{extends:'textarea'})

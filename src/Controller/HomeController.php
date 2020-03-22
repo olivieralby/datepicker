@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Commentaire;
 use DateTime;
 use App\Entity\Study;
 use App\Search\Search;
@@ -14,6 +14,7 @@ use App\Entity\Formation;
 use App\Form\PlannigType;
 use App\Form\PlanningType;
 use App\Form\FormationType;
+use App\Form\CommentaireType;
 use App\Repository\StudyRepository;
 use App\Repository\PlanningRepository;
 use App\Repository\FormationRepository;
@@ -44,16 +45,20 @@ class HomeController extends AbstractController
         $planning = new Planning();
         $study = new Study();
         $search = new Search();
-
+        $commentaire = new Commentaire();
+        //Creation des formulaires
         $form = $this->createForm(PlanningType::class, $planning);
         $form_ = $this->createForm(FormationType::class, $formation);
         $form_study = $this->createForm(StudyType::class, $study);
         $form_formation = $this->createForm(SearchType::class, $search);
+        $form_comment = $this->createForm(CommentaireType::class, $commentaire);
 
         $form->handleRequest($request);
         $form_->handleRequest($request);
         $form_study->handleRequest($request);
         $form_formation->handleRequest($request);
+        $form_comment->handleRequest($request);
+        
         //formulaire pour les formations
         if ($form_->isSubmitted() && $form_->isValid()) {
             $em->persist($formation);
@@ -71,11 +76,18 @@ class HomeController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('home');
         }
+        //formulaire pour les les commentaire
+        if ($form_study->isSubmitted() && $form_study->isValid()) {
+            $temps = new \DateTime(date($_POST['temps']));
+            $commentaire->setTemps($temps);
+            $em->persist($commentaire);
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
         //récupération des valeurs de la base de donnée
         $name_formation = $this->formationrepository->findAll();
         $list_study  = $this->studyrepository->findStudy($search);
         $items = $repo->findPlanning($search);
-        dump($items);
         //retourne une vue
         return $this->render('home/index.html.twig', [
             'items' => $items,
@@ -85,6 +97,7 @@ class HomeController extends AbstractController
             'form_' => $form_->createView(),
             'form_study' => $form_study->createView(),
             'form_formation' => $form_formation->createView(),
+            'form_comment' => $form_comment->createView(),
             'list_study' => $list_study
         ]);
     }
